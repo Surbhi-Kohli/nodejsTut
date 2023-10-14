@@ -1,0 +1,19 @@
+{
+  "name": "nodejstut",
+  "version": "1.0.0",
+  "description": "<img width=\"548\" alt=\"Screenshot 2023-10-13 at 10 37 21 PM\" src=\"https://github.com/Surbhi-Kohli/nodejsTut/assets/32058209/132b8081-65c1-4e20-8b04-6fbbde70d18a\"> REPL and cli",
+  "main": "10-fs-sync.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Surbhi-Kohli/nodejsTut.git"
+  },
+  "author": "Surbhi Kohli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Surbhi-Kohli/nodejsTut/issues"
+  },
+  "homepage": "https://github.com/Surbhi-Kohli/nodejsTut#readme"
+}
