@@ -88,3 +88,19 @@ module is actually an object, on which we attach  our exports within its exports
   ## Built - in modules:OS, PATH, FS and HTTP          
 
   ## package.json: manifest file that stores important info about our project
+  //1.npm unintsall
+  //2.nuclear approach to uninstall:remove node module and package.lock, then remove entry of module from package.json and run npm i again
+  //some dependencies in ur package will have nested dependencies which will also have versions and that module's version changes.It might create problems.So package.lock.json has version of all packages, even for nested dependencies and acts as a contract
+
+
+  ## Steeams: are used to read and write sequentially.When we have to handle and manipulate streaming data eg a continuous source or a big file
+  We have 4 different types of streams:
+  Writeable : To write data sequentially,
+  Readable : To read data sequentially ,
+  Duplex : To both read and write data sequentially,
+  Transform : Data can be modified while reading or writing 
+  Streams extend eventEmitter class so we can use events like data.on on stream
+  The concept of streams in computing usually describes the delivery of data in a steady, continuous flow. You can use streams for reading from or writing to a source continuously, thus eliminating the need to fit all the data in memory at once.
+
+Using streams provides two major advantages. One is that you can use your memory efficiently since you do not have to load all the data into memory before you can begin processing. Another advantage is that using streams is time-efficient. You can start processing data almost immediately instead of waiting for the entire payload.
+In case you read a file via stream, it gets read in chunks , as  below in 65kb chunks

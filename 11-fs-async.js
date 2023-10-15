@@ -36,3 +36,34 @@ readFile('./content/first.txt','utf8',(error,result)=>{
 
 
 console.log("start the next task :logs 2nd")
+
+
+/**
+ * You can also use the promise-based fsPromises.readFile() method offered by the fs/promises module:
+ */
+const fs = require('fs/promises');
+
+async function example() {
+  try {
+    const data = await fs.readFile('/Users/joe/test.txt', { encoding: 'utf8' });
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
+}
+example();
+/**
+ * You can also use the promise-based fsPromises.writeFile() method offered by the fs/promises module:
+ */
+
+const fs = require('fs/promises');
+
+async function example() {
+  try {
+    const content = 'Some content!';
+    await fs.writeFile('/Users/joe/test.txt', content);
+  } catch (err) {
+    console.log(err);
+  }
+}
+example();
