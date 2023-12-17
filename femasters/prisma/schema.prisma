@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+//Prisma is a cli that interacts with db at admin level but we need prisma-client-js
+generator client {
+  provider = "prisma-client-js" //name of sdk that we will actually  use in code to do the querying and writing of db. 
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  username  String    @unique
+  password  String
+  products   Product[]
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  name        String   @db.VarChar(255)
+  belongsTo   User     @relation(fields: [belongsToId], references: [id])
+  belongsToId String
+  updates     Update[]
+  //@@index([id,belongsToId])//so that we can query a product with a 
+  //particular id that belongs to a user in optimized way
+  //or
+  @@unique([id,belongsToId])
+}
+enum UPDATE_STATUS {//enum = bunch of constants
+  IN_PROGRESS
+  LIVE
+  DEPRECATED
+  ARCHIVED
+}
+
+model Update {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title   String        @db.VarChar(255)
+  body    String
+  status  UPDATE_STATUS @default(IN_PROGRESS)
+  version String?
+  asset   String?
+
+  productId    String
+  product      Product    @relation(fields: [productId], references: [id])
+  updatePoints UpdatePoint[]
+}
+
+model UpdatePoint {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+
+  name        String @db.VarChar(255)
+  description String
+
+  updateId String
+  update   Update @relation(fields: [updateId], references: [id])
+}
